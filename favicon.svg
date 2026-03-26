@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#0c0c0c"/>
+
+  <!-- Gold decorative top line -->
+  <rect x="11" y="5" width="10" height="1" fill="#c5a367" opacity="0.7"/>
+
+  <!-- "A" — left half of logo -->
+  <text
+    x="9"
+    y="22"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="15"
+    font-weight="400"
+    fill="#ffffff"
+    letter-spacing="-0.5"
+  >A</text>
+
+  <!-- "Y" — right half, italic gold -->
+  <text
+    x="18"
+    y="22"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="15"
+    font-style="italic"
+    font-weight="400"
+    fill="#c5a367"
+    letter-spacing="-0.5"
+  >Y</text>
+
+  <!-- Gold decorative bottom line -->
+  <rect x="11" y="26" width="10" height="1" fill="#c5a367" opacity="0.7"/>
+</svg>
