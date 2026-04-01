@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как я сделала сайт-медиакит с нуля — AndreYana</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0c0c0c;
+    --gold: #c5a367;
+    --gold-light: rgba(197,163,103,0.12);
+    --cream: #f9f7f4;
+    --light-gray: #ece9e4;
+    --text: #2a2a2a;
+    --muted: #777;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ===================== HEADER ===================== */
+  .header {
+    background: var(--black);
+    color: white;
+    padding: 80px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: 'AndreYana';
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 220px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -4px;
+  }
+
+  .header-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+    position: relative;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .header-meta-item {
+    text-align: center;
+  }
+
+  .header-meta-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-meta-item .lbl {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  .header-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    align-self: stretch;
+  }
+
+  /* ===================== RESULT BAND ===================== */
+  .band {
+    background: var(--gold);
+    padding: 18px 24px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: 0.3px;
+  }
+
+  .band a { color: var(--black); font-weight: 700; text-decoration: underline; }
+
+  /* ===================== NAV (TOC) ===================== */
+  .toc {
+    background: white;
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .toc a {
+    display: block;
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .toc a:hover { color: var(--black); border-bottom-color: var(--gold); }
+
+  /* ===================== CONTAINER ===================== */
+  .container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===================== SECTIONS ===================== */
+  .section { padding: 64px 0 48px; }
+  .section + .section { border-top: 1px solid var(--light-gray); }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    color: var(--black);
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+  }
+
+  .section-title em { font-style: italic; color: #8a6a3a; }
+
+  .section-lead {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ===================== STORY BLOCK ===================== */
+  .story {
+    background: var(--black);
+    color: white;
+    padding: 56px 24px;
+  }
+
+  .story-inner {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .story blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+    border-left: 2px solid var(--gold);
+    padding-left: 28px;
+    margin-bottom: 24px;
+  }
+
+  .story-author {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    padding-left: 28px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===================== TOOLS GRID ===================== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 14px;
+  }
+
+  .tool-card {
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 14px;
+    padding: 20px;
+    transition: box-shadow 0.2s;
+  }
+
+  .tool-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+  .tool-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .tool-icon { font-size: 26px; flex-shrink: 0; }
+
+  .tool-name { font-size: 14px; font-weight: 700; color: var(--black); }
+
+  .tool-role {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--gold-light);
+    color: #8a6a3a;
+    margin-top: 2px;
+  }
+
+  .tool-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .tool-free {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #4a9a6a;
+    background: rgba(74,154,106,0.1);
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+
+  /* ===================== STEPS ===================== */
+  .step {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .step + .step { margin-top: 0; }
+
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 48px;
+  }
+
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: var(--black);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .step-line {
+    width: 1px;
+    flex: 1;
+    min-height: 32px;
+    background: var(--light-gray);
+    margin: 8px 0;
+  }
+
+  .step-body {
+    flex: 1;
+    padding: 6px 0 48px;
+  }
+
+  .step:last-child .step-body { padding-bottom: 16px; }
+  .step:last-child .step-line { display: none; }
+
+  .step-time {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .step-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+  }
+
+  .step-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .step-text strong { color: var(--black); font-weight: 600; }
+
+  /* ===================== CODE ===================== */
+  .code-block {
+    background: var(--black);
+    color: #c5a367;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin: 14px 0;
+    overflow-x: auto;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .code-block .comment { color: rgba(197,163,103,0.45); }
+  .code-block .cmd { color: #a8d8a8; }
+
+  .code-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  /* ===================== TIPS / WARNINGS ===================== */
+  .tip {
+    background: rgba(197,163,103,0.1);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  .tip strong { color: var(--black); }
+  .tip .tip-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 5px; }
+
+  .warn {
+    background: rgba(220,80,60,0.07);
+    border-left: 3px solid #dc503c;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .warn strong { color: #c0392b; }
+  .warn .warn-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #dc503c; display: block; margin-bottom: 5px; }
+
+  /* ===================== PROMPT BOX ===================== */
+  .prompt-box {
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 16px 0;
+  }
+
+  .prompt-box .plabel {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .prompt-box p {
+    font-size: 14px;
+    color: #444;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .prompt-box .pnote {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+    border-top: 1px solid var(--light-gray);
+    padding-top: 10px;
+  }
+
+  /* ===================== TAGS ===================== */
+  .tag {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin: 3px 3px 3px 0;
+  }
+
+  .tag.gold { background: var(--gold-light); color: #8a6a3a; }
+  .tag.green { background: rgba(74,154,106,0.1); color: #2e7a50; }
+
+  /* ===================== MISTAKES ===================== */
+  .mistake-list { list-style: none; }
+
+  .mistake-item {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .mistake-item:last-child { border-bottom: none; }
+
+  .mistake-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  .mistake-title { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+
+  .mistake-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  .mistake-fix { font-size: 13px; color: #2e7a50; font-weight: 600; margin-top: 6px; }
+
+  /* ===================== FAQ ===================== */
+  .faq-item {
+    border-bottom: 1px solid var(--light-gray);
+    padding: 22px 0;
+    cursor: pointer;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-q::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding-top: 14px;
+  }
+
+  /* ===================== CHECKLIST ===================== */
+  .checklist { list-style: none; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #444;
+    border-bottom: 1px solid rgba(236,233,228,0.6);
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--light-gray);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .checklist li.done .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: white;
+  }
+
+  .checklist li.done span { text-decoration: line-through; color: var(--muted); }
+
+  /* ===================== RESULT CARDS ===================== */
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .result-card {
+    background: var(--black);
+    color: white;
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .result-card .r-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .result-card .r-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+
+  /* ===================== OUTRO ===================== */
+  .outro {
+    background: var(--black);
+    color: white;
+    padding: 80px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .outro::before {
+    content: '→';
+    position: absolute;
+    font-size: 300px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.02);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .outro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 52px);
+    font-weight: 300;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+
+  .outro h2 em { font-style: italic; color: var(--gold); }
+
+  .outro p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    max-width: 460px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .btn-gold:hover { background: #d4b896; }
+
+  /* ===================== DIVIDER ===================== */
+  .divider { height: 1px; background: var(--light-gray); }
+
+  /* ===================== INLINE IMAGE PLACEHOLDER ===================== */
+  .img-placeholder {
+    background: var(--light-gray);
+    border-radius: 12px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    border: 1px dashed #d0ccc6;
+  }
+
+  /* ===================== TIMELINE ===================== */
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin: 24px 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .tl-item {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    position: relative;
+  }
+
+  .tl-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 17px;
+    right: -1px;
+    width: 50%;
+    height: 2px;
+    background: var(--light-gray);
+    z-index: 0;
+  }
+
+  .tl-item:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 17px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: var(--light-gray);
+    z-index: 0;
+  }
+
+  .tl-dot {
+    width: 36px;
+    height: 36px;
+    background: white;
+    border: 2px solid var(--light-gray);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-item.done .tl-dot {
+    background: var(--black);
+    border-color: var(--black);
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .tl-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .tl-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 600px) {
+    nav.toc { gap: 0; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
+    .header::before { font-size: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========== HEADER =========== -->
+<div class="header">
+  <div class="header-tag">Гайд от AndreYana · 2026</div>
+  <h1>Как я сделала сайт-медиакит<br>с нуля <em>за один день</em></h1>
+  <p class="header-sub">Без программирования, без дизайнера, без денег на разработку — только AI, терминал и желание сделать красиво</p>
+  <div class="header-meta">
+    <div class="header-meta-item">
+      <div class="num">1 день</div>
+      <div class="lbl">на всё</div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <div class="num">0 ₽</div>
+      <div class="lbl">хостинг</div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <div class="num">0</div>
+      <div class="lbl">строк кода вручную</div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <div class="num">RU/EN</div>
+      <div class="lbl">два языка</div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  Живой результат → <a href="https://janpol12.github.io/andreyana-media-kit/" target="_blank">janpol12.github.io/andreyana-media-kit</a>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <a href="#story">История</a>
+  <a href="#tools">Инструменты</a>
+  <a href="#steps">Шаги</a>
+  <a href="#mistakes">Ошибки</a>
+  <a href="#faq">FAQ</a>
+  <a href="#checklist">Чеклист</a>
+</nav>
+
+<div class="container">
+
+  <!-- =========== STORY =========== -->
+</div>
+
+<div class="story" id="story">
+  <div class="story-inner">
+    <blockquote>
+      «Я отправляла клиентам PDF с портфолио. Каждый раз переделывала под бренд вручную. Потом поняла — нужен сайт. Но платить 80–150 тысяч дизайнеру не хотелось. Тогда я попробовала Claude.»
+    </blockquote>
+    <div class="story-author">— Андрей и Яна, создатели AndreYana</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- =========== TOOLS =========== -->
+  <div class="section" id="tools">
+    <div class="section-label">Что использовали</div>
+    <div class="section-title">Инструменты — <em>все бесплатные</em></div>
+    <p class="section-lead">Никаких платных подписок на хостинг, никаких конструкторов за 3000 ₽/месяц. Вот полный стек того, что реально нужно.</p>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">🤖</div>
+          <div>
+            <div class="tool-name">Claude AI</div>
+            <div class="tool-role">Написал весь код</div>
+          </div>
+        </div>
+        <div class="tool-desc">Cowork-режим. Описываешь словами что хочешь — он пишет HTML, CSS, JS. Ни одной строки вручную.</div>
+        <div class="tool-free">Бесплатный план</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">🐙</div>
+          <div>
+            <div class="tool-name">GitHub Pages</div>
+            <div class="tool-role">Хостинг</div>
+          </div>
+        </div>
+        <div class="tool-desc">Бесплатный хостинг от GitHub. Деплой за 1 минуту. Работает 24/7. Адрес: username.github.io/repo</div>
+        <div class="tool-free">Полностью бесплатно</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">🎬</div>
+          <div>
+            <div class="tool-name">ffmpeg</div>
+            <div class="tool-role">Сжатие видео</div>
+          </div>
+        </div>
+        <div class="tool-desc">Консольный инструмент для сжатия видео. 222 МБ превратились в 25 МБ без заметной потери качества.</div>
+        <div class="tool-free">Open source</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">✨</div>
+          <div>
+            <div class="tool-name">Lenis.js</div>
+            <div class="tool-role">Плавный скролл</div>
+          </div>
+        </div>
+        <div class="tool-desc">Библиотека плавного скролла. Подключается одной строкой через CDN — и сайт сразу ощущается дорого.</div>
+        <div class="tool-free">MIT лицензия</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">💻</div>
+          <div>
+            <div class="tool-name">Terminal</div>
+            <div class="tool-role">Git-команды</div>
+          </div>
+        </div>
+        <div class="tool-desc">Встроен в macOS. Для Windows — Git Bash. Нужен только для 3–4 команд: init, add, commit, push.</div>
+        <div class="tool-free">Встроен в систему</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <div class="tool-icon">🗂️</div>
+          <div>
+            <div class="tool-name">VS Code</div>
+            <div class="tool-role">Просмотр файлов</div>
+          </div>
+        </div>
+        <div class="tool-desc">Редактор кода — нужен чтобы открыть index.html и посмотреть что Claude написал. Или любой другой редактор.</div>
+        <div class="tool-free">Бесплатно</div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:24px;">
+      <span class="tip-label">Важно</span>
+      Всё это работает на Mac и Windows. На телефоне сделать не получится — нужен компьютер хотя бы на этапе настройки Git.
+    </div>
+  </div>
+
+  <!-- =========== TIMELINE =========== -->
+  <div style="margin-bottom: 48px;">
+    <div class="section-label">Как это выглядело по времени</div>
+    <div class="timeline">
+      <div class="tl-item done">
+        <div class="tl-dot">1</div>
+        <div class="tl-time">15 мин</div>
+        <div class="tl-label">Идея и структура</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-dot">2</div>
+        <div class="tl-time">1–2 часа</div>
+        <div class="tl-label">Первый промпт и итерации с Claude</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-dot">3</div>
+        <div class="tl-time">30 мин</div>
+        <div class="tl-label">Сжатие видео</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-dot">4</div>
+        <div class="tl-time">20 мин</div>
+        <div class="tl-label">GitHub и деплой</div>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-dot">5</div>
+        <div class="tl-time">∞</div>
+        <div class="tl-label">Правки по ходу</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========== STEPS =========== -->
+  <div class="section" id="steps">
+    <div class="section-label">Пошаговый процесс</div>
+    <div class="section-title">8 шагов от идеи<br>до <em>живого сайта</em></div>
+    <p class="section-lead">Повторяй по порядку. Каждый шаг занимает от 10 минут до 2 часов — зависит от того, насколько ты перфекционист.</p>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~15 минут</div>
+        <div class="step-title">Ответь на 5 вопросов до того как открывать Claude</div>
+        <p class="step-text">Это самый важный шаг, который все пропускают. Чем точнее ты знаешь что хочешь — тем меньше правок и переделок потом. Claude не умеет читать мысли, он работает с тем что ты ему даёшь.</p>
+        <p class="step-text">Открой заметки и запиши:</p>
+        <div class="prompt-box">
+          <div class="plabel">Мои ответы перед стартом</div>
+          <p>
+            1. <strong>Кто аудитория?</strong> Бренды и маркетологи, которые ищут UGC-мейкера<br><br>
+            2. <strong>Какие разделы нужны?</strong> О нас · Фото · Видео · Мы в рекламе · Прайс · Контакт<br><br>
+            3. <strong>Цвета бренда?</strong> Чёрный #0c0c0c · Золотой #c5a367 · Кремовый #f9f7f4<br><br>
+            4. <strong>Какой тон?</strong> Дорого, кинематографично, без лишних слов<br><br>
+            5. <strong>Что должен сделать посетитель?</strong> Написать в Telegram или WhatsApp
+          </p>
+        </div>
+        <div class="tip">
+          <span class="tip-label">Про цвета</span>
+          Если у тебя ещё нет цветов бренда — возьми <strong>2–3 цвета из своих фотографий</strong>. Посмотри что повторяется: тёплые тона, холодные, нейтральные. Используй сервис imagecolorpicker.com — загрузи фото и пипеткой возьми нужный цвет.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~20 минут</div>
+        <div class="step-title">Напиши первый промпт — максимально конкретно</div>
+        <p class="step-text">Открой Claude в Cowork-режиме. Теперь главное — <strong>не писать «сделай красивый сайт».</strong> Это даст тебе что-то общее и безликое. Нужна конкретика: структура, цвета, технологии, поведение.</p>
+        <div class="prompt-box">
+          <div class="plabel">Шаблон первого промпта — скопируй и адаптируй</div>
+          <p>«Создай одностраничный сайт-медиакит для [кто ты — UGC-мейкер / фотограф / дизайнер]. Цвета: основной [HEX], акцент [HEX], фон [HEX]. Шрифт: [Inter / Playfair / любой из Google Fonts]. Разделы: [перечисли]. Технологии: только HTML/CSS/JS, без фреймворков. Плавный скролл через Lenis CDN v1.0.42. Двуязычность RU/EN через data-атрибуты и кнопку переключения. Стиль: [опиши: минималистичный / тёплый / кинематографичный / editorial]. Навигация: фиксированная сверху с backdrop-blur. В конце раздел с прайсом — 3 пакета.»</p>
+          <div class="pnote">Чем больше деталей — тем точнее результат. Можно добавить: «Вдохновение: сайты в стиле Bottega Veneta или Vogue» — Claude это понимает.</div>
+        </div>
+        <div class="tip">
+          <span class="tip-label">Хитрость</span>
+          После первого результата сразу открой его в браузере (просто перетащи файл index.html в окно Chrome). Смотри общее впечатление — не детали. Детали будешь чинить потом, итерация за итерацией.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~1–2 часа</div>
+        <div class="step-title">Итерируй — описывай правки голосом</div>
+        <p class="step-text">Вот где начинается магия. Ты смотришь на сайт, видишь что не нравится — и просто говоришь Claude что изменить. <strong>Никакого кода.</strong> Никаких технических знаний.</p>
+        <p class="step-text">Вот реальные правки которые я делала:</p>
+        <div class="prompt-box">
+          <div class="plabel">Примеры реальных правок из чата</div>
+          <p>
+            «Увеличь шрифт в карточках раздела "О нас" на 20%»<br><br>
+            «Переименуй пункт навигации "Клиенты" в "Мы в рекламе" — везде, включая JS-переводы»<br><br>
+            «Добавь новое видео: файл kofenya_misha.mp4, название "Кофейня MISSHA", поставь на 8-е место»<br><br>
+            «Раздел с пакетами — удали полностью, оставь только три прайс-карточки»<br><br>
+            «Сделай кнопку переключения языка более заметной — золотая рамка, не просто текст»
+          </p>
+        </div>
+        <div class="warn">
+          <span class="warn-label">Распространённая ошибка</span>
+          Не пытайся исправить всё за один промпт. Лучше <strong>одна правка = один запрос</strong>. Так проще отследить что изменилось и откатить если что-то сломалось.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~30 минут</div>
+        <div class="step-title">Сожми видео — это обязательно</div>
+        <p class="step-text">Сырые видео с телефона или камеры весят 50–300 МБ. На GitHub лимит — <strong>100 МБ на файл,</strong> и в целом тяжёлые видео убивают скорость загрузки сайта. ffmpeg решает это за пару минут.</p>
+
+        <div class="code-label">Установить ffmpeg (macOS)</div>
+        <div class="code-block"><span class="comment"># Сначала установи Homebrew если его нет:</span><br><span class="cmd">brew install ffmpeg</span></div>
+
+        <div class="code-label">Сжать одно видео</div>
+        <div class="code-block"><span class="cmd">ffmpeg -i input.mp4 -vcodec libx264 -crf 28 -preset slow output.mp4</span></div>
+
+        <div class="code-label">Сжать всё видео в папке сразу</div>
+        <div class="code-block"><span class="comment"># Зайди в папку с видео:</span><br><span class="cmd">cd ~/Downloads/твоя-папка/images</span><br><br><span class="comment"># Сжать все .mp4 файлы:</span><br><span class="cmd">for f in *.mp4; do ffmpeg -i "$f" -vcodec libx264 -crf 28 -preset slow "compressed_$f"; done</span></div>
+
+        <div class="tip">
+          <span class="tip-label">Параметр crf</span>
+          <strong>crf 28</strong> — хорошее качество для веба. <strong>crf 23</strong> — выше качество, больше размер. <strong>crf 32</strong> — ещё меньше файл, заметная потеря. Для большинства сайтов 28 — оптимально.
+        </div>
+
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:16px;">
+          <div style="background:white; border:1px solid var(--light-gray); border-radius:10px; padding:16px 20px; flex:1; min-width:140px; text-align:center;">
+            <div style="font-size:28px; font-weight:700; color:#dc503c;">222 МБ</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">исходник .mov</div>
+          </div>
+          <div style="display:flex; align-items:center; font-size:24px; color:var(--muted);">→</div>
+          <div style="background:var(--black); border-radius:10px; padding:16px 20px; flex:1; min-width:140px; text-align:center;">
+            <div style="font-size:28px; font-weight:700; color:var(--gold);">25 МБ</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.45); margin-top:4px;">после сжатия</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">5</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~20 минут</div>
+        <div class="step-title">Создай репозиторий на GitHub</div>
+        <p class="step-text">GitHub — это где живёт код твоего сайта. Создай бесплатный аккаунт на github.com, потом создай новый репозиторий (New repository). Назови его понятно: <strong>andreyana-media-kit</strong> или <strong>my-portfolio</strong>.</p>
+
+        <div class="code-label">В терминале — одноразовая настройка</div>
+        <div class="code-block"><span class="comment"># Зайди в папку с сайтом</span><br><span class="cmd">cd ~/Downloads/Agents/твоя-папка</span><br><br><span class="comment"># Инициализируй Git</span><br><span class="cmd">git init</span><br><span class="cmd">git add -A</span><br><span class="cmd">git commit -m "first commit"</span><br><br><span class="comment"># Подключи к GitHub (URL берёшь из своего репозитория)</span><br><span class="cmd">git remote add origin https://github.com/USERNAME/REPO.git</span><br><span class="cmd">git push --set-upstream origin main</span></div>
+
+        <div class="tip">
+          <span class="tip-label">Ветка main, не master</span>
+          GitHub по умолчанию создаёт ветку <strong>main</strong>. Если у тебя создалась <strong>master</strong> — переименуй: <code style="background:var(--light-gray); padding:2px 6px; border-radius:4px; font-size:12px;">git branch -m master main</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">6</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~5 минут</div>
+        <div class="step-title">Включи GitHub Pages — сайт онлайн</div>
+        <p class="step-text">Это самый приятный момент. После одного клика твой сайт становится доступен в интернете по постоянной ссылке.</p>
+        <div class="prompt-box">
+          <div class="plabel">Как включить GitHub Pages</div>
+          <p>
+            1. Открой репозиторий на github.com<br>
+            2. Вкладка <strong>Settings</strong> → раздел <strong>Pages</strong> в левом меню<br>
+            3. В поле Source выбери: <strong>Deploy from a branch</strong><br>
+            4. Branch: <strong>main</strong> → папка: <strong>/ (root)</strong> → нажми Save<br>
+            5. Подожди ~1 минуту → обнови страницу<br>
+            6. Скопируй адрес: <strong>username.github.io/repo-name</strong> 🎉
+          </p>
+        </div>
+        <div class="tip">
+          <span class="tip-label">Свой домен</span>
+          Хочешь адрес типа <strong>andreyana.ru</strong> вместо github.io? Купи домен на reg.ru или namecheap (~500–1500 ₽/год) и подключи через Settings → Pages → Custom domain. Инструкция есть в документации GitHub.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">7</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">вечно :)</div>
+        <div class="step-title">Обновляй сайт одной командой</div>
+        <p class="step-text">Внёс правки с Claude, добавил новое видео, изменил прайс — один раз запускаешь команду и через минуту сайт обновлён в интернете. Больше ничего не нужно.</p>
+
+        <div class="code-label">Команда обновления — запомни её навсегда</div>
+        <div class="code-block"><span class="cmd">cd ~/Downloads/Agents/твоя-папка && git add -A && git commit -m "update" && git push</span></div>
+
+        <span class="tag gold">1 команда</span>
+        <span class="tag gold">~1 мин до обновления</span>
+        <span class="tag green">Бесплатно навсегда</span>
+        <span class="tag">История изменений сохраняется</span>
+
+        <div class="tip" style="margin-top:16px;">
+          <span class="tip-label">Лайфхак</span>
+          Добавь эту команду в алиас терминала, чтобы не набирать каждый раз:<br>
+          <code style="background:var(--black); color:var(--gold); padding:4px 10px; border-radius:6px; font-size:12px; display:inline-block; margin-top:8px;">alias deploy="cd ~/Downloads/Agents/твоя-папка && git add -A && git commit -m 'update' && git push"</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">8</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~10 минут</div>
+        <div class="step-title">Подключи Google Analytics</div>
+        <p class="step-text">После того как сайт работает — добавь аналитику. Это бесплатно и даёт понять: сколько людей заходит, откуда, на каком разделе уходят. Без этого работаешь вслепую.</p>
+        <div class="prompt-box">
+          <div class="plabel">Как получить GA4 код</div>
+          <p>
+            1. Зайди на analytics.google.com<br>
+            2. Создай аккаунт → новый ресурс → тип: Web<br>
+            3. Введи URL своего сайта<br>
+            4. Скопируй <strong>Measurement ID</strong> — выглядит как <strong>G-XXXXXXXXXX</strong><br>
+            5. Скажи Claude: «Замени G-XXXXXXXXXX на G-твой-реальный-id в index.html»<br>
+            6. Задеплой → через 24 часа увидишь первые данные
+          </p>
+          <div class="pnote">Без аналитики ты не знаешь работает ли сайт. Обязательно.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end steps section -->
+
+  <!-- =========== MISTAKES =========== -->
+  <div class="section" id="mistakes">
+    <div class="section-label">Из личного опыта</div>
+    <div class="section-title">Ошибки которые я <em>уже сделала</em></div>
+    <p class="section-lead">Чтобы тебе не пришлось.</p>
+
+    <ul class="mistake-list">
+      <li class="mistake-item">
+        <div class="mistake-icon">😬</div>
+        <div>
+          <div class="mistake-title">Загрузила видео весом 57 МБ с пробелом в названии файла</div>
+          <div class="mistake-desc">Файл назывался «Hotel Four Seasons lobby.mp4» — с пробелами. В URL это превратилось в кракозябры, видео не воспроизводилось. Пришлось переименовывать и перезаливать.</div>
+          <div class="mistake-fix">✓ Правило: в именах файлов — только латиница и нижнее подчёркивание. hotel_four_seasons.mp4 ✓</div>
+        </div>
+      </li>
+      <li class="mistake-item">
+        <div class="mistake-icon">🐢</div>
+        <div>
+          <div class="mistake-title">Забыла сжать видео перед загрузкой</div>
+          <div class="mistake-desc">portfolio_2026.mp4 так и остался 48 МБ. Из-за этого первый экран с видео-фоном грузится медленно на мобильных. Надо было сжать до 10–15 МБ.</div>
+          <div class="mistake-fix">✓ Правило: любое видео на сайте — сначала ffmpeg, потом загружать.</div>
+        </div>
+      </li>
+      <li class="mistake-item">
+        <div class="mistake-icon">🔤</div>
+        <div>
+          <div class="mistake-title">Не добавила переводы для новых текстов</div>
+          <div class="mistake-desc">Добавляла новые блоки и забывала добавить EN-переводы в JS-объект translations. Когда клиент переключал язык на EN — часть текста оставалась на русском.</div>
+          <div class="mistake-fix">✓ После каждого нового блока сразу говорю Claude: «Добавь EN-перевод для этого текста в объект translations».</div>
+        </div>
+      </li>
+      <li class="mistake-item">
+        <div class="mistake-icon">📉</div>
+        <div>
+          <div class="mistake-title">Не подключила аналитику сразу</div>
+          <div class="mistake-desc">Несколько недель сайт работал без Google Analytics. Не знаю сколько людей заходило в это время, откуда они приходили, какие разделы смотрели.</div>
+          <div class="mistake-fix">✓ Аналитика — в первый же день после деплоя, не откладывай.</div>
+        </div>
+      </li>
+      <li class="mistake-item">
+        <div class="mistake-icon">📱</div>
+        <div>
+          <div class="mistake-title">Не проверяла сайт на телефоне после каждой правки</div>
+          <div class="mistake-desc">Делала правки на компьютере, всё выглядело хорошо. Потом открыла на iPhone — некоторые карточки налезали друг на друга. Пришлось всё переделывать.</div>
+          <div class="mistake-fix">✓ После каждого обновления открывай сайт с телефона. Половина посетителей — мобильные.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- =========== FAQ =========== -->
+  <div class="section" id="faq">
+    <div class="section-label">Вопросы и ответы</div>
+    <div class="section-title"><em>FAQ</em> — то, что все спрашивают</div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Мне нужно уметь программировать?</div>
+      <div class="faq-a">Нет совсем. Я написала ноль строк кода вручную. Весь HTML, CSS и JavaScript писал Claude по моим описаниям. Единственное что нужно — уметь чётко объяснять словами что ты хочешь видеть на экране.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Сколько это стоит?</div>
+      <div class="faq-a">GitHub Pages — бесплатно навсегда. ffmpeg — бесплатно (open source). Lenis.js — бесплатно. Claude — есть бесплатный план. Домен (необязательно) — от 500 ₽/год. Итого базовый вариант: 0 ₽. Для сравнения: заказать сайт у фрилансера — от 30 000 ₽, у студии — от 150 000 ₽.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Можно ли сделать это на Windows?</div>
+      <div class="faq-a">Да. Установи Git for Windows (gitforwindows.org) — он включает Git Bash, который работает как терминал. ffmpeg тоже есть под Windows — скачай с ffmpeg.org. VS Code работает везде. Всё остальное (GitHub, Claude) — в браузере.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Что если Claude написал что-то неправильно?</div>
+      <div class="faq-a">Просто скажи ему что не так. «Это выглядит неправильно — кнопка перекрывает текст на мобильном» — и он исправит. Если совсем всё сломалось — можно попросить его «откатить последнее изменение и сделать иначе». Claude помнит контекст разговора и понимает что именно менялось.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Как добавить свой домен типа andreyana.ru?</div>
+      <div class="faq-a">1. Купи домен на reg.ru, namecheap или любом регистраторе (~500–1500 ₽/год). 2. В настройках домена добавь DNS-записи типа A, указывающие на серверы GitHub (их четыре IP, они есть в документации GitHub). 3. В репозитории Settings → Pages → Custom domain — введи свой домен. 4. Подожди до 24 часов пока обновится DNS. Готово.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Можно ли сделать не медиакит, а другой сайт?</div>
+      <div class="faq-a">Конечно. Этот же процесс подходит для: портфолио фотографа, сайта бьюти-мастера, лендинга для курса, персонального сайта-резюме, сайта небольшого бренда. Ключевое — нужно знать что ты хочешь и уметь описать это словами Claude.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Что если GitHub Pages работает медленно?</div>
+      <div class="faq-a">Главное для скорости — сжатые видео и оптимизированные фото. Используй ffmpeg для видео (crf 28) и squoosh.app для фотографий (WebP формат, качество 80%). Если всё равно медленно — можно подключить Cloudflare CDN бесплатно, он кеширует файлы по всему миру.</div>
+    </div>
+  </div>
+
+  <!-- =========== CHECKLIST =========== -->
+  <div class="section" id="checklist">
+    <div class="section-label">Перед публикацией</div>
+    <div class="section-title">Чеклист — <em>проверь всё</em></div>
+    <p class="section-lead">Прокликай каждый пункт перед тем как отправлять ссылку клиентам. Кликай на чекбоксы — они интерактивные.</p>
+
+    <ul class="checklist" id="checklist-list">
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Сайт открывается по ссылке без ошибок</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Все видео воспроизводятся (кликни на каждое)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Переключение RU/EN работает и переводит все тексты</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Сайт нормально выглядит на iPhone (открой с телефона)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Все кнопки контакта ведут куда надо (Telegram / WhatsApp)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>В именах файлов нет кириллицы и пробелов</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Google Analytics подключён (не осталось G-XXXXXXXXXX)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Прайс актуальный и без опечаток</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Сайт загружается быстро — первый экран за 3 сек на телефоне</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>В адресной строке нет HTTP-ошибок (F12 → Console)</span></li>
+    </ul>
+  </div>
+
+  <!-- RESULT CARDS -->
+  <div style="padding-bottom: 64px;">
+    <div class="section-label">Что получилось у нас</div>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="r-num">1 день</div>
+        <div class="r-label">от идеи до живого сайта</div>
+      </div>
+      <div class="result-card">
+        <div class="r-num">9</div>
+        <div class="r-label">видео в портфолио</div>
+      </div>
+      <div class="result-card">
+        <div class="r-num">RU+EN</div>
+        <div class="r-label">два языка</div>
+      </div>
+      <div class="result-card">
+        <div class="r-num">0 ₽</div>
+        <div class="r-label">стоимость хостинга</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<!-- =========== OUTRO =========== -->
+<div class="outro">
+  <h2>Теперь твоя <em>очередь</em></h2>
+  <p>Если я смогла — сможешь и ты. Единственное что нужно — начать и не бояться что сломается. Сломается — Claude починит.</p>
+  <a href="https://janpol12.github.io/andreyana-media-kit/" class="btn-gold" target="_blank">
+    Посмотреть живой пример →
+  </a>
+</div>
+
+<script>
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+  }
+</script>
+
+</body>
+</html>
