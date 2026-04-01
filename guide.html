@@ -796,6 +796,7 @@
 
 <!-- TOC -->
 <nav class="toc">
+  <a href="#install">Установка</a>
   <a href="#story">История</a>
   <a href="#tools">Инструменты</a>
   <a href="#steps">Шаги</a>
@@ -808,6 +809,111 @@
 
   <!-- =========== STORY =========== -->
 </div>
+
+<!-- =========== INSTALL =========== -->
+<div class="container">
+  <div class="section" id="install">
+    <div class="section-label">Прежде чем начать</div>
+    <div class="section-title">Как установить <em>Claude</em> на компьютер</div>
+    <p class="section-lead">Для этого гайда нужен десктопный Claude с режимом Cowork. Вот как его поставить — занимает 3 минуты.</p>
+
+    <!-- STEP: Download -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~1 минута</div>
+        <div class="step-title">Скачай десктопное приложение Claude</div>
+        <p class="step-text">Открой <strong>claude.ai/download</strong> в браузере и скачай версию для своей системы. Доступно для macOS и Windows.</p>
+        <div class="prompt-box">
+          <div class="plabel">Прямые ссылки для скачивания</div>
+          <p>
+            <strong>macOS</strong> → <a href="https://claude.ai/download" target="_blank" style="color:#8a6a3a;">claude.ai/download</a> → «Download for Mac»<br><br>
+            <strong>Windows</strong> → <a href="https://claude.ai/download" target="_blank" style="color:#8a6a3a;">claude.ai/download</a> → «Download for Windows»<br><br>
+            Минимальные требования: macOS 12+ или Windows 10+, 4 ГБ RAM
+          </p>
+        </div>
+        <div class="tip">
+          <span class="tip-label">Аккаунт</span>
+          Нужен аккаунт на claude.ai — зарегистрируйся бесплатно через Google или email. Базовый план бесплатный.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP: Install -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~1 минута</div>
+        <div class="step-title">Установи приложение</div>
+        <p class="step-text">После скачивания:</p>
+        <div class="prompt-box">
+          <div class="plabel">macOS</div>
+          <p>Открой скачанный .dmg файл → перетащи Claude в папку Applications → открой из Launchpad или Spotlight (Cmd+Пробел → «Claude»)</p>
+        </div>
+        <div class="prompt-box" style="margin-top:12px;">
+          <div class="plabel">Windows</div>
+          <p>Запусти скачанный .exe установщик → нажми «Install» → после установки Claude появится на рабочем столе или в меню Пуск</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP: Cowork -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">~1 минута</div>
+        <div class="step-title">Включи режим Cowork</div>
+        <p class="step-text">Обычный Claude отвечает текстом. <strong>Cowork — это другой режим</strong> внутри десктопного приложения: он умеет создавать файлы, открывать браузер, запускать код. Именно его я использовала для сайта.</p>
+        <div class="prompt-box">
+          <div class="plabel">Как включить Cowork</div>
+          <p>
+            1. Открой приложение Claude на компьютере<br>
+            2. В левом меню найди раздел <strong>«Cowork»</strong> или иконку с рабочим столом<br>
+            3. Нажми — откроется новый чат в режиме Cowork<br>
+            4. Теперь можешь писать задания — Claude будет создавать файлы прямо на твоём компьютере
+          </p>
+        </div>
+        <div class="warn">
+          <span class="warn-label">Важно</span>
+          Cowork — это <strong>не Claude Code</strong> (инструмент для разработчиков в терминале). Cowork — визуальный режим в десктопном приложении, специально для таких задач как наш сайт. Никакого программирования не нужно.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP: First prompt -->
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-time">30 секунд</div>
+        <div class="step-title">Проверь что всё работает</div>
+        <p class="step-text">Напиши Claude первое тестовое сообщение в режиме Cowork чтобы убедиться что всё готово:</p>
+        <div class="prompt-box">
+          <div class="plabel">Тестовый промпт</div>
+          <p>«Создай простой HTML-файл с текстом "Привет, мир!" и сохрани его на рабочий стол»</p>
+          <div class="pnote">Если файл появился на рабочем столе — Cowork работает. Можно начинать делать сайт.</div>
+        </div>
+        <div class="tip">
+          <span class="tip-label">Готово!</span>
+          Теперь у тебя есть всё необходимое. Переходи к следующему разделу — и начнём строить сайт.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="divider"></div>
 
 <div class="story" id="story">
   <div class="story-inner">
@@ -1303,7 +1409,7 @@
 <!-- =========== OUTRO =========== -->
 <div class="outro">
   <h2>Теперь твоя <em>очередь</em></h2>
-  <p>Если я смогла — сможешь и ты. Единственное что нужно — начать и не бояться что сломается. Сломается — Claude починит.</p>
+  <p>Если мы смогли — сможешь и ты. Единственное что нужно — начать и не бояться что сломается. Сломается — Claude починит.</p>
   <a href="https://janpol12.github.io/andreyana-media-kit/" class="btn-gold" target="_blank">
     Посмотреть живой пример →
   </a>
