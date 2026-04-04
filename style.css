@@ -434,6 +434,37 @@ nav.scrolled .menu-toggle span {
   letter-spacing: 0.05em;
 }
 
+.hero-cta {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 32px;
+  border: 1px solid #c5a367;
+  color: #c5a367;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.hero-cta:hover {
+  background: #c5a367;
+  color: #0c0c0c;
+}
+
+.video-cta-wrap {
+  text-align: center;
+  padding: 48px 24px 16px;
+}
+.video-cta-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #777;
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+}
+
 @media (max-width: 768px) {
   .hero-content { right: 24px; bottom: 48px; left: 24px; text-align: center; }
   .hero-tag { font-size: 12px; margin-bottom: 16px; }
