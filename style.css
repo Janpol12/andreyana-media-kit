@@ -394,6 +394,44 @@ nav.scrolled .menu-toggle span {
   );
 }
 
+.hero-top-left {
+  position: absolute;
+  top: 120px;
+  left: 48px;
+  max-width: 320px;
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  z-index: 2;
+}
+
+.hero-top-left em {
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+}
+
+.hero-bottom-phrase {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  white-space: nowrap;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.5vw, 36px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  z-index: 2;
+}
+
+.hero-bottom-phrase em {
+  font-style: italic;
+  color: rgba(255,255,255,0.75);
+}
+
 .hero-content {
   position: absolute;
   bottom: 64px;
@@ -414,7 +452,7 @@ nav.scrolled .menu-toggle span {
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(57px, 11vw, 143px);
+  font-size: clamp(40px, 7.7vw, 100px);
   font-weight: 400;
   color: var(--white);
   line-height: 0.9;
@@ -469,6 +507,12 @@ nav.scrolled .menu-toggle span {
   .hero-content { right: 24px; bottom: 48px; left: 24px; text-align: center; }
   .hero-tag { font-size: 12px; margin-bottom: 16px; }
   .hero-subtitle { font-size: 16px; }
+  .hero-top-left {
+    top: 90px;
+    left: 24px;
+    font-size: 20px;
+    max-width: 90%;
+  }
 }
 
 
@@ -735,6 +779,10 @@ nav.scrolled .menu-toggle span {
   height: 1px;
   background: rgba(197, 163, 103, 0.6);
   margin-top: 20px;
+}
+
+.pricing-section .section-title {
+  color: #fff;
 }
 
 .section-title {
@@ -2124,11 +2172,14 @@ footer {
   .brands-header { flex-direction: column; gap: 8px; margin-bottom: 40px; }
 }
 
-.brands-header .section-label { color: rgba(255,255,255,0.5); }
+.brands-header .section-label { 
+  color: rgba(255,255,255,0.5); 
+  font-size: 14.3px;
+}
 .brands-header .section-title { color: var(--white); }
 
 .brands-count {
-  font-size: 11px;
+  font-size: 14.3px;
   font-weight: 600;
   letter-spacing: 0.2em;
   color: rgba(197,163,103,0.6);
