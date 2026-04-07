@@ -413,6 +413,22 @@ nav.scrolled .menu-toggle span {
   color: rgba(255,255,255,0.65);
 }
 
+.hero-ugc-text {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 32px;
+}
+
+.hero-ugc-text em {
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+}
+
 .hero-bottom-phrase {
   position: absolute;
   bottom: 48px;
@@ -434,7 +450,7 @@ nav.scrolled .menu-toggle span {
 
 .hero-content {
   position: absolute;
-  bottom: 64px;
+  bottom: 40px;
   right: 48px;
   max-width: 800px;
   text-align: right;
@@ -452,7 +468,7 @@ nav.scrolled .menu-toggle span {
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(40px, 7.7vw, 100px);
+  font-size: clamp(32px, 6.2vw, 80px);
   font-weight: 400;
   color: var(--white);
   line-height: 0.9;
@@ -466,7 +482,7 @@ nav.scrolled .menu-toggle span {
 
 .hero-subtitle {
   margin-top: 16px;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: 300;
   color: rgba(255,255,255,0.8);
   letter-spacing: 0.05em;
@@ -503,10 +519,97 @@ nav.scrolled .menu-toggle span {
   letter-spacing: 0.03em;
 }
 
+/* ─── Section CTA (after brands & photos) ─── */
+.section-cta-wrap {
+  text-align: center;
+  padding: 56px 24px 64px;
+  background: var(--black);
+}
+.section-cta-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #777;
+  margin-bottom: 24px;
+  letter-spacing: 0.03em;
+}
+
+/* ─── КАК МЫ РАБОТАЕМ ─── */
+.how-section {
+  padding: 100px 48px 80px;
+  background: var(--black);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 56px;
+  border-left: 1px solid rgba(197, 163, 103, 0.2);
+  padding-left: 40px;
+}
+.how-step {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding-bottom: 56px;
+  position: relative;
+}
+.how-step::before {
+  content: '';
+  position: absolute;
+  left: -45px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px var(--black), 0 0 0 4px rgba(197, 163, 103, 0.4);
+}
+.how-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(197, 163, 103, 0.25);
+  line-height: 1;
+  min-width: 56px;
+  user-select: none;
+}
+.how-content {
+  padding-top: 4px;
+}
+.how-step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.how-step-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #888;
+  line-height: 1.7;
+  max-width: 520px;
+}
+.how-cta {
+  text-align: center;
+  padding-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .how-section { padding: 72px 24px 56px; }
+  .how-steps { padding-left: 28px; }
+  .how-step { gap: 20px; }
+  .how-num { font-size: 36px; min-width: 40px; }
+  .how-step-title { font-size: 20px; }
+}
+
 @media (max-width: 768px) {
   .hero-content { right: 24px; bottom: 48px; left: 24px; text-align: center; }
   .hero-tag { font-size: 12px; margin-bottom: 16px; }
-  .hero-subtitle { font-size: 16px; }
+  .hero-subtitle { font-size: 21px; }
   .hero-top-left {
     top: 90px;
     left: 24px;
@@ -608,7 +711,7 @@ nav.scrolled .menu-toggle span {
 
 .about-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(64px, 7.5vw, 108px);
+  font-size: clamp(32px, 3.75vw, 54px);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: -0.01em;
@@ -618,6 +721,41 @@ nav.scrolled .menu-toggle span {
 .about-title em {
   font-style: italic;
   color: rgba(255,255,255,0.65);
+}
+
+.about-chemistry {
+  margin-top: 32px;
+  max-width: 520px;
+}
+
+.about-chemistry-rule {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold, #c5a367);
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.about-chemistry-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2vw, 26px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold, #c5a367);
+  line-height: 1.2;
+  margin: 0 0 14px;
+  letter-spacing: 0.01em;
+}
+
+.about-chemistry-text {
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
 /* Лид — крупная курсивная цитата */
@@ -1851,10 +1989,6 @@ nav.scrolled .menu-toggle span {
   position: relative;
   padding: 160px 48px;
   background: url('images/UC_1.55.1.webp') center/cover no-repeat !important;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 120px;
-  align-items: start;
   color: var(--white);
   overflow: hidden;
 }
@@ -1862,28 +1996,31 @@ nav.scrolled .menu-toggle span {
 .contact::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
   z-index: 1;
 }
 
-.contact > * {
+.contact-inner {
   position: relative;
   z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1200px;
 }
 
 @media (max-width: 900px) {
-  .contact { 
-    grid-template-columns: 1fr; 
-    gap: 64px; 
-    padding: 120px 24px; 
-  }
-  .contact::before {
-    background: rgba(0,0,0,0.7);
-  }
+  .contact { padding: 120px 24px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 56px; }
+  .contact::before { background: rgba(0,0,0,0.75); }
+}
+
+/* ─── CONTACT FORM ─── */
+
+.contact-right {
+  transform: translate(15%, -20%);
 }
 
 .contact-label { 
@@ -2502,7 +2639,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  align-self: flex-start;
+  align-self: flex-end;
   padding: 16px 40px;
   border: 1px solid rgba(255,255,255,0.5);
   background: transparent;

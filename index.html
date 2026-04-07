@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://andreyana.site">
-  <title>ANDREYANA — Медиа Кит</title>
+  <title>AndreYana — UGC-контент для брендов и отелей</title>
 
   <!-- ─── SEO ─── -->
   <meta name="description" content="Андрей и Яна — актёры, модели, UGC-создатели. 100+ рекламных проектов. Люксовые отели, travel, мода, lifestyle. Открыты к сотрудничеству.">
@@ -108,7 +108,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">AndreYana</a>
+    <a href="#" class="nav-logo" data-i18n="nav-logo">Медиа Кит · 2026</a>
     <button id="lang-toggle" class="lang-toggle" aria-label="Switch language">EN</button>
     <button class="menu-toggle" aria-label="Menu">
       <span></span>
@@ -132,12 +132,12 @@
       <source src="images/my_movie.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
-    <div class="hero-top-left" data-i18n-html="hero-top-left">Создаём<br><em>UGC-контент,</em><br>который удерживает<br>внимание и <em>продаёт.</em></div>
-    <div class="hero-content">
-      <span class="hero-tag" data-i18n="hero-tag">Медиа Кит · 2026</span>
+    <div class="hero-top-left">
       <h1 class="hero-title">Andre<em>Yana</em></h1>
-      <p class="hero-subtitle" data-i18n="hero-subtitle">Актёры · Модели · UGC-создатели</p>
-      <a href="#contact" class="hero-cta" data-i18n="hero-cta">Обсудить проект →</a>
+      <p class="hero-subtitle" data-i18n="hero-subtitle">Актёры · Модели · UGC</p>
+    </div>
+    <div class="hero-content">
+      <span class="hero-ugc-text" data-i18n-html="hero-ugc-text">Создаём<br><em>UGC-контент,</em><br>который удерживает<br>внимание и <em>продаёт.</em></span>
     </div>
   </section>
 
@@ -155,11 +155,13 @@
       <div class="about-top-row reveal">
         <span class="about-label" data-i18n="about-label">О НАС</span>
         <div class="about-center">
-          <h2 class="about-title" data-i18n="about-title">О нас</h2>
+          <h2 class="about-title" data-i18n="about-title">Почему нас выбирают</h2>
+          <div class="about-chemistry reveal reveal-delay-1">
+            <span class="about-chemistry-rule"></span>
+            <p class="about-chemistry-heading" data-i18n="chemistry-heading">Живая химия, которую не сыграть</p>
+            <p class="about-chemistry-text" data-i18n="chemistry-text">Люди подписываются на нас не за красивую картинку — а за настоящую связь между нами. Любовь, доверие, семейные ценности. Это то, что бренды пытаются передать через актёров, а у нас это реальность. Зрители это чувствуют — и верят.</p>
+          </div>
         </div>
-        <p class="about-lead" data-i18n-html="about-lead">
-          Андрей &amp; Яна — UGC-креаторы, актёры и модели<br><em>performance creators</em><br>Создаём контент, который удерживает внимание и продаёт.
-        </p>
         <div class="about-body reveal reveal-delay-1" data-i18n-html="about-body">
           <div class="about-cards">
             <div class="about-card">
@@ -706,13 +708,16 @@
 
   <!-- ─── CONTACT ─── -->
   <section class="contact" id="contact">
-    <div>
-      <p class="contact-label reveal" data-i18n="contact-label">Контакт</p>
-      <h2 class="contact-title reveal reveal-delay-1" data-i18n-html="contact-title">Давайте<br>творить красоту<br>вместе ✨</h2>
-      <p class="contact-desc reveal reveal-delay-2" data-i18n="contact-desc">
-        Открыты для UGC, рекламных съёмок, амбассадорств и коллабораций с люксовыми отелями, travel-брендами, модой, косметикой и lifestyle-проектами.
-      </p>
-      <div class="contact-links reveal reveal-delay-3">
+    <div class="contact-inner">
+
+      <!-- Левая колонка: заголовок + соцсети -->
+      <div class="contact-left">
+        <p class="contact-label reveal" data-i18n="contact-label">Контакт</p>
+        <h2 class="contact-title reveal reveal-delay-1" data-i18n-html="contact-title">Обсудим<br>ваш проект</h2>
+        <p class="contact-desc reveal reveal-delay-2" data-i18n="contact-desc">
+          Открыты для UGC, рекламных съёмок, амбассадорств и коллабораций с люксовыми отелями, travel-брендами, модой, косметикой и lifestyle-проектами.
+        </p>
+        <div class="contact-links reveal reveal-delay-3">
         <a href="mailto:andreyanamusic@gmail.com" class="contact-link">
           <div class="contact-link-left">
             <div class="contact-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
@@ -763,8 +768,44 @@
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-      </div>
-    </div>
+        </div>
+      </div><!-- /contact-left -->
+
+      <!-- Правая колонка: форма -->
+      <div class="contact-right reveal reveal-delay-2">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xdapbwak" method="POST">
+          <div class="cf-field">
+            <input class="cf-input" type="text" name="name" placeholder="Андрей" required>
+            <label class="cf-label" data-i18n="cf-name">Ваше имя</label>
+            <span class="cf-line"></span>
+          </div>
+          <div class="cf-field">
+            <input class="cf-input" type="text" name="brand" placeholder="Nike, Four Seasons...">
+            <label class="cf-label" data-i18n="cf-brand">Бренд / Компания</label>
+            <span class="cf-line"></span>
+          </div>
+          <div class="cf-field">
+            <textarea class="cf-input cf-textarea" name="message" placeholder="Расскажите о вашем проекте..." required></textarea>
+            <label class="cf-label" data-i18n="cf-task">Задача</label>
+            <span class="cf-line"></span>
+          </div>
+          <div class="cf-field">
+            <input class="cf-input" type="text" name="contact" placeholder="Telegram / Email / Instagram">
+            <label class="cf-label" data-i18n="cf-contact">Как с вами связаться</label>
+            <span class="cf-line"></span>
+          </div>
+          <button type="submit" class="cf-submit">
+            <span class="cf-submit-text" data-i18n="cf-submit">Отправить заявку</span>
+            <span class="cf-submit-arrow">→</span>
+          </button>
+          <div class="cf-success" id="cf-success">
+            <p class="cf-success-title">Заявка отправлена!</p>
+            <p class="cf-success-sub" data-i18n="cf-success-sub">Ответим в течение 2 часов.</p>
+          </div>
+        </form>
+      </div><!-- /contact-right -->
+
+    </div><!-- /contact-inner -->
   </section>
 
   <!-- ─── LIGHTBOX ─── -->

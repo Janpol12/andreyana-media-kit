@@ -583,6 +583,39 @@ document.addEventListener('DOMContentLoaded', () => {
     return card ? card.offsetWidth + 40 : 340;
   });
 
+  // ─── CONTACT FORM ───
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('.cf-submit');
+      const btnText = btn.querySelector('.cf-submit-text');
+      btn.classList.add('cf-loading');
+      btn.disabled = true;
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.reset();
+          const success = document.getElementById('cf-success');
+          if (success) success.classList.add('visible');
+          btn.style.display = 'none';
+        } else {
+          btn.classList.remove('cf-loading');
+          btn.disabled = false;
+          if (btnText) btnText.textContent = 'Ошибка — попробуйте ещё раз';
+        }
+      } catch {
+        btn.classList.remove('cf-loading');
+        btn.disabled = false;
+        if (btnText) btnText.textContent = 'Ошибка — попробуйте ещё раз';
+      }
+    });
+  }
+
   // ─── i18n LANGUAGE TOGGLE ───
   (function () {
     var currentLang = localStorage.getItem('ay-lang') || 'ru';
@@ -595,10 +628,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'nav-collab': 'Сотрудничество',
         'nav-contact': 'Контакт',
         'hero-tag': 'Медиа Кит · 2026',
+        'nav-logo': 'Медиа Кит · 2026',
         'hero-top-left': 'Создаём<br><em>UGC-контент,</em><br>который удерживает<br>внимание и <em>продаёт.</em>',
-        'hero-subtitle': 'Актёры · Модели · UGC-создатели',
+        'hero-ugc-text': 'Создаём<br><em>UGC-контент,</em><br>который удерживает<br>внимание и <em>продаёт.</em>',
+        'hero-subtitle': 'Актёры · Модели · UGC',
         'about-label': 'О НАС',
-        'about-title': 'О нас',
+        'about-title': 'Почему нас выбирают',
         'about-lead': 'Андрей &amp; Яна — UGC-креаторы, актёры и модели<br><em>performance creators</em><br>Создаём контент, который удерживает внимание и продаёт.',
         'about-body': '<div class="about-cards"><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div><div class="about-text"><strong>100+ проектов:</strong> кино, сериалы, реклама.</div></div><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></div><div class="about-text"><strong>Полный цикл продакшена:</strong> сценарий, съёмка, монтаж.</div></div><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><div class="about-text"><strong>UGC-контент</strong> для отелей, fashion, travel.</div></div></div>',
         'stat-projects': 'рекламных проектов',
@@ -639,8 +674,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'collab-h4': 'Lifestyle-проекты',
         'collab-d4': 'Честный, живой и красивый контент — с душой, химией и профессионализмом',
         'contact-label': 'Контакт',
-        'contact-title': 'Давайте<br>творить красоту<br>вместе ✨',
+        'contact-title': 'Обсудим<br>ваш проект',
         'contact-desc': 'Открыты для UGC, рекламных съёмок, амбассадорств и коллабораций с люксовыми отелями, travel-брендами, модой, косметикой и lifestyle-проектами.',
+        'chemistry-heading': 'Живая химия, которую не сыграть',
+        'chemistry-text': 'Люди подписываются на нас не за красивую картинку — а за настоящую связь между нами. Любовь, доверие, семейные ценности. Это то, что бренды пытаются передать через актёров, а у нас это реальность. Зрители это чувствуют — и верят.',
+        'cf-name': 'Ваше имя',
+        'cf-brand': 'Бренд / Компания',
+        'cf-task': 'Задача',
+        'cf-contact': 'Как с вами связаться',
+        'cf-submit': 'Отправить заявку',
+        'cf-success': 'Заявка отправлена! Ответим в течение 2 часов.',
+        'cf-success-sub': 'Ответим в течение 2 часов.',
         'footer-copy': '© 2026 · Медиа Кит · Актёры и UGC-создатели',
         'nav-pricing': 'Прайс',
         'price-label': 'Стоимость',
@@ -675,7 +719,22 @@ document.addEventListener('DOMContentLoaded', () => {
         'price-e1': 'Передача сырых исходников — +30–50% к стоимости',
         'price-e2': 'Права на использование в платной рекламе — +50% на 6 месяцев',
         'price-e3': '📸 Фото-сет (10–15 кадров) — от 10 000 ₽',
-        'price-e4': '⏱ Срочность до 3 дней — +40%'
+        'price-e4': '⏱ Срочность до 3 дней — +40%',
+        'how-label': 'Процесс',
+        'how-title': 'Как мы работаем',
+        'how-h1': 'Оставляете заявку',
+        'how-d1': 'Пишете нам в Telegram или на почту. Рассказываете о бренде, задаче и желаемых сроках — без лишних брифингов.',
+        'how-h2': 'Мы всё берём на себя',
+        'how-d2': 'Сценарий, съёмка, монтаж, музыка — полный цикл производства. Вы согласовываете идею и ждёте результат.',
+        'how-h3': 'Получаете контент',
+        'how-d3': 'Готовые ролики и фото — в срок и без переделок. Контент, который можно сразу публиковать.',
+        'how-cta': 'Начать проект →',
+        'brands-cta-text': 'Работаем с брендами любого масштаба — от локальных до international',
+        'brands-cta-btn': 'Обсудить ваш проект →',
+        'photos-cta-text': 'Нужен такой контент для вашего бренда?',
+        'photos-cta-btn': 'Получить медиакит →',
+        'video-cta-text': 'Понравился формат? Обсудим ваш проект',
+        'video-cta-btn': 'Написать нам →'
       },
       en: {
         'nav-about': 'About',
@@ -685,10 +744,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'nav-collab': 'Collaboration',
         'nav-contact': 'Contact',
         'hero-tag': 'Media Kit · 2026',
+        'nav-logo': 'Media Kit · 2026',
         'hero-top-left': 'We create<br><em>UGC content</em><br>that holds<br>attention and <em>drives sales.</em>',
-        'hero-subtitle': 'Actors · Models · UGC Creators',
+        'hero-ugc-text': 'We create<br><em>UGC content</em><br>that holds<br>attention and <em>drives sales.</em>',
+        'hero-subtitle': 'Actors · Models · UGC',
         'about-label': 'ABOUT US',
-        'about-title': 'About Us',
+        'about-title': 'Why brands choose us',
         'about-lead': 'Andrey &amp; Yana — UGC creators, actors &amp; models<br><em>performance creators</em><br>We make content that holds attention and drives sales.',
         'about-body': '<div class="about-cards"><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div><div class="about-text"><strong>100+ projects:</strong> films, series, premium advertising.</div></div><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></div><div class="about-text"><strong>Full cycle production:</strong> scripting, shooting, editing.</div></div><div class="about-card"><div class="about-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><div class="about-text"><strong>Premium UGC</strong> for hotels, fashion, travel.</div></div></div>',
         'stat-projects': 'advertising projects',
@@ -729,8 +790,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'collab-h4': 'Lifestyle Projects',
         'collab-d4': 'Honest, vibrant and beautiful content — with soul, chemistry and professionalism',
         'contact-label': 'Contact',
-        'contact-title': 'Let\'s create<br>beauty<br>together ✨',
+        'contact-title': 'Let\'s discuss<br>your project',
         'contact-desc': 'Open to UGC, advertising shoots, brand ambassadorship and collaborations with luxury hotels, travel brands, fashion, beauty and lifestyle projects.',
+        'chemistry-heading': 'Real chemistry you can\'t fake',
+        'chemistry-text': 'People follow us not for a beautiful picture — but for the genuine connection between us. Love, trust, family values. That\'s what brands try to convey through actors, but for us it\'s reality. Viewers feel it — and believe it.',
+        'cf-name': 'Your name',
+        'cf-brand': 'Brand / Company',
+        'cf-task': 'Project description',
+        'cf-contact': 'How to reach you',
+        'cf-submit': 'Send request',
+        'cf-success': 'Request sent! We\'ll reply within 2 hours.',
+        'cf-success-sub': 'We\'ll reply within 2 hours.',
         'footer-copy': '© 2026 · Media Kit · Actors & UGC Creators',
         'nav-pricing': 'Pricing',
         'price-label': 'Rates',
@@ -765,7 +835,22 @@ document.addEventListener('DOMContentLoaded', () => {
         'price-e1': 'Raw footage delivery — +30–50% to price',
         'price-e2': 'Paid ad usage rights — +50% for 6 months',
         'price-e3': '📸 Photo set (10–15 shots) — from $130',
-        'price-e4': '⏱ Rush delivery (3 days) — +40%'
+        'price-e4': '⏱ Rush delivery (3 days) — +40%',
+        'how-label': 'Process',
+        'how-title': 'How We Work',
+        'how-h1': 'You reach out',
+        'how-d1': 'Message us on Telegram or email. Tell us about your brand, goals and timeline — no lengthy briefs required.',
+        'how-h2': 'We handle everything',
+        'how-d2': 'Script, shoot, edit, music — full production cycle. You approve the concept and wait for the result.',
+        'how-h3': 'You get your content',
+        'how-d3': 'Finished videos and photos — on time, no revisions needed. Content ready to publish straight away.',
+        'how-cta': 'Start a project →',
+        'brands-cta-text': 'We work with brands of any scale — from local to international',
+        'brands-cta-btn': 'Discuss your project →',
+        'photos-cta-text': 'Need this kind of content for your brand?',
+        'photos-cta-btn': 'Get media kit →',
+        'video-cta-text': 'Like the format? Let\'s discuss your project',
+        'video-cta-btn': 'Write to us →'
       }
     };
 
