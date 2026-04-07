@@ -739,23 +739,66 @@ nav.scrolled .menu-toggle span {
 
 .about-chemistry-heading {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(22px, 2.3vw, 30px);
   font-style: italic;
   font-weight: 400;
   color: var(--gold, #c5a367);
   line-height: 1.2;
-  margin: 0 0 14px;
+  margin: 0 0 20px;
   letter-spacing: 0.01em;
 }
 
 .about-chemistry-text {
   font-family: var(--font-sans, 'Montserrat', sans-serif);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 300;
   line-height: 1.85;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
   letter-spacing: 0.02em;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Зачин — крупный, серифный, атмосферный */
+.about-chemistry-text .ct-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+/* Ценности — золото, разрядка, акцент */
+.about-chemistry-text .ct-values {
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: clamp(11px, 0.95vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold, #c5a367);
+  padding: 4px 0;
+  border-top: 1px solid rgba(197,163,103,0.25);
+  border-bottom: 1px solid rgba(197,163,103,0.25);
+}
+
+/* Заключение — читаемое тело */
+.about-chemistry-text .ct-conclusion {
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+
+.about-chemistry-text .ct-conclusion em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
 }
 
 /* Лид — крупная курсивная цитата */
@@ -2020,7 +2063,6 @@ nav.scrolled .menu-toggle span {
 /* ─── CONTACT FORM ─── */
 
 .contact-right {
-  transform: translate(15%, -20%);
 }
 
 .contact-label { 
@@ -2562,7 +2604,7 @@ footer {
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.75);
   pointer-events: none;
   transition: top 0.25s var(--ease-lux),
               font-size 0.25s var(--ease-lux),
@@ -2575,7 +2617,7 @@ footer {
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.18);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
   padding: 14px 0 10px;
   font-family: var(--font-serif);
   font-size: 17px;
@@ -2588,7 +2630,7 @@ footer {
 .cf-input::placeholder { color: transparent; }
 
 .cf-input:focus {
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.6);
 }
 
 /* Float label up on focus OR filled */
@@ -2619,6 +2661,10 @@ footer {
   min-height: 110px;
   resize: none;
   line-height: 1.6;
+}
+
+.cf-field:has(.cf-textarea) .cf-line {
+  display: none;
 }
 
 /* Field error state */
