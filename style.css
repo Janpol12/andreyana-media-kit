@@ -175,14 +175,16 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 16px 48px;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 65px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 nav.scrolled {
+  height: 57px;
   padding: 12px 48px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -191,18 +193,17 @@ nav.scrolled {
 }
 
 .nav-logo {
-  font-family: var(--font-serif);
+  font-family: "Playfair Display", serif;
   font-size: 20px;
   font-weight: 400;
-  letter-spacing: 0.15em;
-  color: var(--white);
+  letter-spacing: 3px;
+  color: #fff;
   text-decoration: none;
-  text-transform: none;
-  transition: color 0.4s var(--ease-lux);
+  transition: color 0.3s ease;
 }
 
 nav.scrolled .nav-logo {
-  color: var(--black);
+  color: #0c0c0c;
 }
 
 .nav-links {
@@ -212,14 +213,14 @@ nav.scrolled .nav-logo {
 }
 
 .nav-links a {
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   text-transform: uppercase;
-  transition: all 0.4s var(--ease-lux);
-  position: relative;
+  letter-spacing: 2.2px;
+  transition: color 0.3s ease;
 }
 
 nav.scrolled .nav-links a {
@@ -641,7 +642,7 @@ nav.scrolled .menu-toggle span {
 }
 
 @media (max-width: 768px) {
-  .hero-content { right: 24px; bottom: 48px; left: 24px; text-align: center; }
+  .hero-content { right: 24px; bottom: 140px; left: 24px; text-align: center; }
   .hero-tag { font-size: 12px; margin-bottom: 16px; }
   .hero-subtitle { font-size: 21px; }
   .hero-top-left {
@@ -649,6 +650,17 @@ nav.scrolled .menu-toggle span {
     left: 24px;
     font-size: 20px;
     max-width: 90%;
+  }
+  .hero-bottom-phrase {
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+  }
+  .hero-cta-main {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 11px;
   }
 }
 
@@ -1603,7 +1615,7 @@ nav.scrolled .menu-toggle span {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100000;
+  z-index: 10000;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 #iphone-max-close:hover {
