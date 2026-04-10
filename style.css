@@ -642,7 +642,7 @@ nav.scrolled .menu-toggle span {
 }
 
 @media (max-width: 768px) {
-  .hero-content { right: 24px; bottom: 140px; left: 24px; text-align: center; }
+  .hero-content { right: 24px; bottom: 82px; left: 24px; text-align: center; }
   .hero-tag { font-size: 12px; margin-bottom: 16px; }
   .hero-subtitle { font-size: 21px; }
   .hero-top-left {
