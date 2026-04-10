@@ -1,197 +1,154 @@
-# AndreYana Site — Context для следующей сессии
-
-**Дата:** 4 апреля 2026
-**Статус:** Задеплоен на andreyana.site ✅ | Домен подключён ✅ | Hero CTA добавлен ✅
+# AndreYana Site — Context для нового диалога
+**Дата:** 11 апреля 2026
 
 ---
 
-## Ссылки
-- **Живой сайт:** https://andreyana.site
-- **Гайд для подписчиков:** https://andreyana.site/guide.html
-- **Репозиторий:** https://github.com/Janpol12/andreyana-media-kit.git
-- **Локальная папка:** /Users/andrey/Downloads/Agents/andreyana-site
+## Что это за проект
+Сайт-медиакит для Андрея и Яны — UGC-пара, актёры, модели.
+- Репозиторий: `~/Downloads/Agents/andreyana-site/`
+- Деплой: GitHub Pages → https://andreyana.site (обновляется через 1–2 минуты после пуша)
+- Push делает Андрей сам из своего терминала: `git add -A && git commit -m "..." && git push origin main`
+- Стек: vanilla HTML/CSS/JS, без фреймворков
+- i18n: `data-i18n` / `data-i18n-html` атрибуты, translations в `script.js`, ключ localStorage `'ay-lang'`
+- CSS переменные: `--black: #0c0c0c`, `--gold / --accent-gold: #c5a367`, `--cream: #f9f7f4`
 
 ---
 
-## Технологии
-- Vanilla HTML/CSS/JS (без фреймворков)
-- Lenis smooth scroll v1.0.42 (CDN)
-- GitHub Pages (ветка **main**)
-- Домен: **andreyana.site** (reg.ru)
-
-## CSS-переменные
-- --black: #0c0c0c
-- --gold: #c5a367
-- --cream: #f9f7f4
-- --light-gray: #ece9e4
-
-## i18n система
-- Атрибуты: data-i18n / data-i18n-html
-- JS объект translations — RU + EN
-- localStorage ключ: 'ay-lang'
-- encodeSrc() — для URL-кодирования кириллических путей
-
----
-
-## Как пушить изменения на GitHub
-
+## Текущее состояние Hero (актуально)
+```html
+<div class="hero-top-left">
+  <h1 class="hero-title">Andre<em>Yana</em></h1>
+  <p class="hero-subtitle" data-i18n="hero-subtitle">Актёры · Модели · UGC</p>
+</div>
+<div class="hero-content">
+  <span class="hero-ugc-text" data-i18n-html="hero-ugc-text">
+    Создаём<br><em>UGC-контент,</em><br>который удерживает<br>внимание и <em>продаёт.</em>
+  </span>
+</div>
+<div class="hero-bottom-phrase">
+  <a href="#contact" class="hero-cta-main" data-i18n="hero-cta">Обсудить проект</a>
+</div>
 ```
-cd ~/Downloads/Agents/andreyana-site && git add -A && git commit -m "update" && git push
+- Верхний левый: AndreYana (h1) + Актёры · Модели · UGC
+- Центр-низ: UGC-текст
+- **Новое:** кнопка CTA внизу слева (desktop) / полная ширина (мобиль < 768px)
+- Стиль кнопки: glassmorphic (blur backdrop, gold border), hover → arrow сдвигается вправо
+- Nav-logo: «Медиа Кит · 2026» (data-i18n="nav-logo")
+- hero-title: `clamp(32px, 6.2vw, 80px)`
+
+---
+
+## Структура секций (текущий порядок)
+1. Hero — с кнопкой CTA
+2. About (`id="about"`) — заголовок «Почему нас выбирают»
+   - **Новое:** блок `about-chemistry` с 3-уровневым текстом (intro serif, gold values, conclusion)
+3. Бренды-тикер (100+ брендов)
+4. Brands (`id="brands"`) — портфолио клиентов
+5. Photos (`id="photos"`)
+6. Video (`id="media"`)
+7. **Collab (`id="collab"`)** — **ПЕРЕРАБОТАНО**: 
+   - Лейбл: «В сотрудничестве»
+   - Заголовок: «Что вы получаете»
+   - 4 карточки с новыми иконками и текстом о преимуществах:
+     1. ✦ UGC-формат, рекламный результат
+     2. 🎬 Полный цикл производства
+     3. 🔗 Органическое продвижение
+     4. ❤️ Реальные парные истории
+8. Pricing (`id="pricing"`)
+9. Contact (`id="contact"`) — двухколоночный
+
+---
+
+## About секция — Chemistry блок (новое)
+Структура 3 уровней текста:
+```html
+<p class="about-chemistry-text" data-i18n-html="chemistry-text">
+  <span class="ct-intro">Люди подписываются на нас не за красивую картинку —<br>а за настоящую связь между нами.</span>
+  <span class="ct-values">Любовь&nbsp;&nbsp;·&nbsp;&nbsp;Доверие&nbsp;&nbsp;·&nbsp;&nbsp;Семейные ценности</span>
+  <span class="ct-conclusion">Это то, что бренды пытаются передать через актёров,<br>а у нас это реальность.<br>Зрители это чувствуют — и <em>верят.</em></span>
+</p>
 ```
 
-Сайт обновляется через ~1 минуту после пуша.
+**CSS классы:**
+- `.about-chemistry-text` — flex column, gap: 20px
+- `.ct-intro` — serif italic, крупный (18–24px), самый заметный
+- `.ct-values` — золотой заголовок, капсы, разрядка, border-top/bottom
+- `.ct-conclusion` — тело текста с курсивным *верят*
 
 ---
 
-## Локальный просмотр
+## Collab секция — Что изменилось
+**Было:** 4 формата работы (отели, travel, fashion, lifestyle) с описанием каждого
+**Стало:** Преимущества сотрудничества (что клиент получает)
 
-```
-cd ~/Downloads/Agents/andreyana-site && python3 -m http.server 8080
-```
-Затем открыть: http://localhost:8080
-
----
-
-## Что сделано в сессии 4 апреля 2026
-
-### Домен andreyana.site
-- ✅ Куплен домен andreyana.site на reg.ru
-- ✅ Настроены DNS: 4 A-записи GitHub Pages (185.199.108-111.153) + CNAME www → janpol12.github.io
-- ✅ Создан CNAME файл в репозитории
-- ✅ Все мета-теги исправлены (canonical, OG, JSON-LD) — теперь указывают на andreyana.site
-- [ ] Включить Enforce HTTPS в GitHub → Settings → Pages (после подтягивания DNS)
-
-### Улучшения сайта (index.html + style.css)
-- ✅ Добавлена CTA кнопка «Обсудить проект →» в Hero section (золотая, ведёт на #contact)
-- ✅ Добавлен CTA-блок после видео-секции («Понравился формат? Написать нам →»)
-- ✅ Удалён дублирующий canonical тег (был старый GitHub URL)
-
-### Guide.html
-- ✅ Секция «Что получилось у нас» расширена до 9 карточек:
-  1 день · RU+EN · 0₽ · О нас · 6 видео с рекламой · 25 фото · 9 рилз · Прайс · Связь
-
-### Outreach для отелей
-- ✅ Создан Hotel Outreach Kit (outputs/hotels-outreach.html) — 20 отелей + RU/EN шаблоны
-- ✅ Разработан формат нестандартного письма (начинать с детали про отель, не с себя)
-- ✅ Разобраны 2 письма (MYS, Chekhoff) — плюсы/минусы
+Новые i18n ключи:
+- `collab-label`: «В сотрудничестве»
+- `collab-title`: «Что вы получаете»
+- `collab-h1-h4`, `collab-d1-d4` — новый текст о 4 преимуществах
+- Новые иконки (Sparkle, Clapper, Share, Heart) вместо старых
 
 ---
 
-## ЧТО ЕЩЁ НЕ СДЕЛАНО (приоритет)
+## i18n — все ключи (актуально)
+**Hero:**
+- `nav-logo`, `hero-ugc-text`, `hero-subtitle`, **`hero-cta`** (новое)
 
-### Срочно:
-- [ ] **Enforce HTTPS** — GitHub → репозиторий → Settings → Pages → галочка Enforce HTTPS
-- [ ] **Google Analytics** — заменить G-XXXXXXXXXX на реальный GA4 ID
-  - Зайти: analytics.google.com → создать ресурс GA4 → скопировать Measurement ID
-- [ ] **Отзывы** — добавить блок с 2–3 отзывами от брендов (нужны тексты от Андрея)
+**About:**
+- `about-label`, `about-title`, `chemistry-heading`, `chemistry-text`
 
-### Важно:
-- [ ] **Статистика** — уточнить реальные цифры у Андрея: сколько брендов / роликов / лет
-- [ ] **FAQ на основном сайте** — 5–6 вопросов снимают возражения покупателей
-- [ ] **CTA после фото-галереи** — аналогично блоку после видео
-- [ ] **Удалить оригинал** «Hotel Four Seasons lobby.mp4» (57MB):
-  ```
-  rm ~/Downloads/Agents/andreyana-site/images/\ Hotel\ Four\ Seasons\ lobby.mp4
-  git add -A && git commit -m "remove large original" && git push
-  ```
+**Collab (переработано):**
+- `collab-label` ← «Форматы работы» → **«В сотрудничестве»**
+- `collab-title` ← «Открыты к сотрудничеству» → **«Что вы получаете»**
+- `collab-h1`, `collab-d1` — UGC-формат, рекламный результат
+- `collab-h2`, `collab-d2` — Полный цикл производства
+- `collab-h3`, `collab-d3` — Органическое продвижение
+- `collab-h4`, `collab-d4` — Реальные парные истории
 
-### Потом:
-- [ ] Кейс-секция — 1–2 истории: задача → решение → результат
-- [ ] OG-превью протестировать (https://developers.facebook.com/tools/debug/)
+**Contact & Form:**
+- `cf-name`, `cf-brand`, `cf-task`, `cf-contact`, `cf-submit`, `cf-success`, `cf-success-sub`
 
 ---
 
-## Email для рассылки отелям
-- **Рабочий email сайта:** andreyanamusic@gmail.com
-- **Доп. email:** rivanoxen@gmail.com
+## Последние коммиты (запушены на GitHub)
+1. `13b221c` — update collab section + chemistry text redesign
+2. `3d88253` — add hero CTA button ("Обсудить проект")
+3. `0c7d0d6` — fix hero CTA button mobile layout (full width, no text overlap)
 
 ---
 
-## Список отелей для UGC-предложения (20 штук)
+## Следующие приоритетные задачи
 
-### 🇷🇺 МОСКВА (6 отелей)
+### Срочно (воронка продаж)
+- [ ] Секция «Как мы работаем» — 4 шага: Бриф → Концепция → Съёмка+монтаж → Сдача
+- [ ] Добавить CTA кнопку после видео секции
+- [ ] Переставить «Что вы получаете» перед портфолио (сейчас после)
 
-| # | Отель | Адрес | Instagram | Email / Контакт |
-|---|-------|-------|-----------|-----------------|
-| 1 | **MYS Boutique Hotel 5★** | Кривоколенный пер., 10с4 | @mys_hotel_moscow | reception@mys-hotel.ru |
-| 2 | **Chekhoff Hotel · Curio by Hilton 5★** | Петровка | @chekhoffhotelmoscow (34K) | reservations@chekhoffhotel.com · PR: Nina Chernokalskaya (LinkedIn) |
-| 3 | **Parradosso Boutique Hotel 5★** | Настасьинский пер., 8к1 | — | info@friendlyinn.ru |
-| 4 | **Savoy Hotel Moscow 5★** | Рождественка, 3/6 | @savoymoscow | eng.savoy.ru · Sales: Pavel Korsakov (LinkedIn) |
-| 5 | **The Rooms Boutique Hotel 5★** | Таганская | — | sales@mghotels.ru · +7 499 110-92-00 |
-| 6 | **Four Seasons Hotel Moscow 5★** | Охотный ряд | — | fourseasons.com/moscow · уже в портфолио! |
+### Важно (доверие + социальное доказательство)
+- [ ] Секция отзывов клиентов (нужны реальные цитаты)
+- [ ] Заменить стат «20+ мастер-классов» на что-то релевантное (охват аккаунтов, дни сдачи и т.д.)
+- [ ] Фото-портфолио брендов (быстрее загружается, чем много видео)
 
-### 🇷🇺 САНКТ-ПЕТЕРБУРГ (4 отеля)
-
-| # | Отель | Адрес | Instagram | Email / Контакт |
-|---|-------|-------|-----------|-----------------|
-| 7 | **Dom Boutique Hotel 5★** | Гангутская ул., 4 | @domboutiquehotel | info@domboutiquehotel.com · +7 812 245-10-40 |
-| 8 | **Trezzini Palace Hotel 5★** | Университетская наб., 21 | — | trezzinipalace.com · GM: Marina Makk · +7 812 313-66-22 |
-| 9 | **Villa du Prince 5★** | Каменный остров | @villa.prince.hotel | villaduprince.ru |
-| 10 | **Золотой Треугольник 4★** | Большая Конюшенная, 12 | — | booking@gthotel.ru · +7 812 490-77-10 |
-| 11 | **Taleon Imperial Hotel 5★** | Наб. р. Мойки, 59 | — | taleon.ru |
-| 12 | **Kempinski Hotel Moika 22 5★** | Наб. р. Мойки, 22 | — | kempinski.com/stpetersburg |
-| 13 | **Belmond Grand Hotel Europe 5★** | Михайловская, 1/7 | — | belmond.com |
-| 14 | **W St. Petersburg 5★** | Вознесенский пр., 6 | — | marriott.com/w-saint-petersburg |
-
-### 🇷🇺 СОЧИ (3 отеля)
-
-| # | Отель | Контакт |
-|---|-------|---------|
-| 15 | **Hyatt Regency Sochi** | hyatt.com/sochi |
-| 16 | **Swissôtel Resort Sochi Kamelia** | swissotel.com/sochi |
-| 17 | **Pullman Sochi Centre** | pullmanhotels.com |
-
-### 🇦🇪 ОАЭ / 🇻🇳 Вьетнам / 🇹🇭 Таиланд (3 отеля)
-
-| # | Отель | Контакт |
-|---|-------|---------|
-| 18 | **Atlantis The Palm, Dubai** | atlantis.com |
-| 19 | **One&Only The Palm, Dubai** | oneandonlyresorts.com |
-| 20 | **InterContinental Danang Sun Peninsula** | intercontinental.com/danang · уже снимали Дананг |
+### Технические
+- [ ] Formspree email: переподтвердить (Settings → Resend verification)
+- [ ] Google Analytics — заменить G-XXXXXXXXXX на реальный ID
+- [ ] Оптимизация мобиля (проверить все секции на узких экранах)
+- [ ] Навигация: 7 пунктов → 4 (убрать лишние)
 
 ---
 
-## Формат письма для отелей
-
-**Тема:** `[Название отеля] · живой UGC-контент для ваших соцсетей`
-
-**Структура:**
-1. Первое предложение — конкретная деталь про ЭТОТ отель (не про себя!)
-2. Кто мы + что предлагаем (2-3 предложения)
-3. Ссылка на медиакит
-4. Цена + простой следующий шаг
-
-**Нельзя использовать:** взаимовыгодное сотрудничество, синергия, охваты, «я являюсь»
-
-**Пример открытия (Chekhoff):**
-> «Ваши авторские коктейли особенно бы понравились А.П.Чехову — и он был бы в восторге от концептуальной кухни в отеле своего имени.»
+## Аудит воронки (выводы)
+Проблемы текущей воронки:
+1. ✅ Hero CTA — **ИСПРАВЛЕНО** (кнопка добавлена)
+2. Нет объяснения что такое UGC и почему это нужно (боль клиента)
+3. «Что вы получаете» стоит после видео вместо перед ним
+4. Нет секции «Как мы работаем» (снимает тревогу перед заказом)
+5. Нет отзывов (социальное доказательство)
+6. Статистика не релевантна для брендов
 
 ---
 
-## Прайс (текущий)
-
-**Starter** — от 15 000 ₽ / $200 · 2 ролика 15–30 сек
-**Standard** — от 35 000 ₽ / $450 · 5 роликов + 5 фото (ПОПУЛЯРНЫЙ)
-**Premium** — от 70 000 ₽ / $900 · 10 роликов + 15 фото, 10–14 дней
-
-Доп: исходники +30–50% · реклама +50%/6мес · срочность +40%
-
----
-
-## Структура видео (images/)
-1. portfolio_2026.mp4 (48MB) — Прогулка Патрики | Коллаборация с видеографом
-2. hotel_four_seasons.mp4 (3MB) — Hotel Four Seasons lobby ✅ сжато
-3. diploma.mp4 (21MB) — Кофемания
-4. video_triple_coffee.mp4 (27MB) — Трипл кофе · UGC
-5. danang_coffee.mp4 (13MB) — Дананг · Кофе с тропическим дождём
-6. video_bana_khios.mp4 (8.2MB) — Бана Хилз · Travel
-7. aquapark.mp4 — Аквапарк Микадзуки · Lifestyle
-8. kofenya_misha.mp4 (4.8MB) — Кофейня MISSHA ✅ сжато
-9. kraski_drop_colour.mp4 (25MB) — Краски Drop Colour ✅ сжато
-
----
-
-## Пользователь
-- Имя: Andrey / Email: rivanoxen@gmail.com
-- Email сайта: andreyanamusic@gmail.com
-- Телетайп: https://teletype.in/@andreyanapro/editor
+## Notes
+- Все i18n работает (RU ↔ EN через toggle)
+- Мобильная версия требует внимания (Hero текст не должен перекрываться)
+- Сайт быстрый, нет лишних скриптов
+- GitHub Pages деплой стабилен, обновление через 1–2 мин
