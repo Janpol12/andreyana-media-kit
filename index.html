@@ -119,7 +119,7 @@
       <li><a href="#about" data-i18n="nav-about">О нас</a></li>
       <li><a href="#brands" data-i18n="nav-brands">Мы в рекламе</a></li>
       <li><a href="#photos" data-i18n="nav-photos">Портфолио</a></li>
-      <li><a href="#media" data-i18n="nav-media">Наши работы</a></li>
+      <li><a href="#media" data-i18n="nav-media">UGC - коллаборации</a></li>
       <li><a href="#collab" data-i18n="nav-collab">Сотрудничество</a></li>
       <li><a href="#pricing" data-i18n="nav-pricing">Прайс</a></li>
       <li><a href="#contact" data-i18n="nav-contact">Контакт</a></li>
@@ -427,7 +427,7 @@
     <div class="section-header">
       <div>
         <p class="section-label" data-i18n="video-label">Видео</p>
-        <h2 class="section-title" data-i18n="video-title">Наши работы</h2>
+        <h2 class="section-title" data-i18n="video-title">UGC - коллаборации</h2>
       </div>
     </div>
     <div class="video-carousel-wrap">
@@ -440,35 +440,45 @@
     <div class="video-grid">
       <div class="video-card mask-reveal">
         <div class="video-phone">
-          <div class="video-wrap" data-video-src="images/bud_in_love.mp4">
+          <div class="video-wrap" data-video-src="images/gorbacheva_dance_new.mp4">
             <video preload="metadata" playsinline>
-              <source src="images/bud_in_love.mp4#t=0.001" type="video/mp4">
+              <source src="images/gorbacheva_dance_new.mp4" type="video/mp4">
             </video>
             <button class="vplay-btn" aria-label="Смотреть видео">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </div>
+          <div class="stats-wrap" style="display: none; width: 100%; aspect-ratio: 9/16; border-radius: 36px; overflow: hidden; background: #000; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);">
+            <img src="images/gorbacheva_stats.jpg" alt="Статистика" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
           <button class="vexpand-btn" aria-label="Открыть в iPhone MAX">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
           </button>
         </div>
-        <p class="video-label" data-i18n="vl-bud-in-love">Коллаборация с Bud in love</p>
+        <p class="video-label" data-i18n="vl-bud-in-love">Танцы с Ирой Горбачевой</p>
+        <button class="stats-toggle-btn" data-i18n="stats-btn-show" onclick="const c = this.closest('.video-card'); const vw = c.querySelector('.video-wrap'); const sw = c.querySelector('.stats-wrap'); const btn = c.querySelector('.vexpand-btn'); const isEn = document.documentElement.lang === 'en'; if(vw.style.display==='none'){ vw.style.display='block'; sw.style.display='none'; btn.style.display='block'; this.innerHTML = isEn ? 'Reels stats' : 'Статистика рилса'; this.setAttribute('data-i18n', 'stats-btn-show'); this.classList.remove('active'); } else { vw.style.display='none'; sw.style.display='block'; btn.style.display='none'; this.innerHTML = isEn ? 'Back to video' : 'Вернуться к видео'; this.setAttribute('data-i18n', 'stats-btn-back'); this.classList.add('active'); }">Статистика рилса</button>
+        <p class="stats-desc" data-i18n="stats-desc-gorbacheva">Коллаборация сразу трех сообществ, рилс набрал 4.3 млн, встреча с Ирой была случайна, но все получили удовольствие и результат и от танца и от просмотров.</p>
       </div>
       <div class="video-card mask-reveal reveal-delay-1">
         <div class="video-phone">
-          <div class="video-wrap" data-video-src="images/portfolio_2026.mp4">
-            <video preload="metadata" playsinline poster="images/poster_patriki.webp">
-              <source src="images/portfolio_2026.mp4" type="video/mp4">
+          <div class="video-wrap" data-video-src="images/verdikt_tekst.mp4">
+            <video preload="metadata" playsinline>
+              <source src="images/verdikt_tekst.mp4" type="video/mp4">
             </video>
             <button class="vplay-btn" aria-label="Смотреть видео">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </div>
+          <div class="stats-wrap" style="display: none; width: 100%; aspect-ratio: 9/16; border-radius: 36px; overflow: hidden; background: #000; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);">
+            <img src="images/verdikt_stats.jpg" alt="Статистика" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
           <button class="vexpand-btn" aria-label="Открыть в iPhone MAX">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
           </button>
         </div>
-        <p class="video-label" data-i18n="vl-showreel2026">Прогулка Патрики | Коллаборация с видеографом</p>
+        <p class="video-label" data-i18n="vl-showreel2026">Иммерсивный спектакль</p>
+        <button class="stats-toggle-btn" data-i18n="stats-btn-show" onclick="const c = this.closest('.video-card'); const vw = c.querySelector('.video-wrap'); const sw = c.querySelector('.stats-wrap'); const btn = c.querySelector('.vexpand-btn'); const isEn = document.documentElement.lang === 'en'; if(vw.style.display==='none'){ vw.style.display='block'; sw.style.display='none'; btn.style.display='block'; this.innerHTML = isEn ? 'Reels stats' : 'Статистика рилса'; this.setAttribute('data-i18n', 'stats-btn-show'); this.classList.remove('active'); } else { vw.style.display='none'; sw.style.display='block'; btn.style.display='none'; this.innerHTML = isEn ? 'Back to video' : 'Вернуться к видео'; this.setAttribute('data-i18n', 'stats-btn-back'); this.classList.add('active'); }">Статистика рилса</button>
+        <p class="stats-desc" data-i18n="stats-desc-immersive">Рилс набрал 750 тыс+ просмотров, заполнил залы на 5-ть спектаклей вперед и принес 2700+ подписчиков на аккаунт спектакля.</p>
       </div>
       <div class="video-card mask-reveal reveal-delay-2">
         <div class="video-phone">
@@ -480,11 +490,16 @@
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
           </div>
+          <div class="stats-wrap" style="display: none; width: 100%; aspect-ratio: 9/16; border-radius: 36px; overflow: hidden; background: #000; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);">
+            <img src="images/IMG_3732.jpg" alt="Статистика" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
           <button class="vexpand-btn" aria-label="Открыть в iPhone MAX">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
           </button>
         </div>
         <p class="video-label" data-i18n="vl-want-the-same">Фэйспластика</p>
+        <button class="stats-toggle-btn" data-i18n="stats-btn-show" onclick="const c = this.closest('.video-card'); const vw = c.querySelector('.video-wrap'); const sw = c.querySelector('.stats-wrap'); const btn = c.querySelector('.vexpand-btn'); const isEn = document.documentElement.lang === 'en'; if(vw.style.display==='none'){ vw.style.display='block'; sw.style.display='none'; btn.style.display='block'; this.innerHTML = isEn ? 'Reels stats' : 'Статистика рилса'; this.setAttribute('data-i18n', 'stats-btn-show'); this.classList.remove('active'); } else { vw.style.display='none'; sw.style.display='block'; btn.style.display='none'; this.innerHTML = isEn ? 'Back to video' : 'Вернуться к видео'; this.setAttribute('data-i18n', 'stats-btn-back'); this.classList.add('active'); }">Статистика рилса</button>
+        <p class="stats-desc" data-i18n="stats-desc-faceplastica">Специалист по фейс-пластике получил 120+ подписчиков, 40+ заявок в директ и 20+ записей в первую неделю после рилса.</p>
       </div>
       <div class="video-card mask-reveal reveal-delay-3">
         <div class="video-phone">
